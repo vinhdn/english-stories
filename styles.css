@@ -100,6 +100,9 @@ button svg{ display:block; }
 .video-box{ position:absolute; inset:0; background:#000; overflow:hidden; }
 #ytPlayer, #ytPlayer iframe{ width:100%; height:100%; display:block; }
 #shield{ position:absolute; inset:0; z-index:2; cursor:pointer; }
+.player-topbar, .player-bottom{ transition:opacity .35s ease; }
+.player-topbar.fade, .player-bottom.fade{ opacity:0; pointer-events:none; }
+#videoBox.idle{ cursor:none; }
 .player-topbar{
   position:absolute; top:0; left:0; right:0; z-index:4;
   display:flex; justify-content:space-between; align-items:flex-start;

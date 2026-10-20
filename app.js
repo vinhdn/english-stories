@@ -21,6 +21,7 @@ let currentIdx = -1;
 let player = null;
 let playerReady = false;
 let progressTimer = null;
+let hideTimer = null;
 let timeLeftSec = -1;  // -1 = không hẹn giờ
 let errorStreak = 0;
 let muted = false;
@@ -156,6 +157,29 @@ function syncPlayUI() {
   const playing = player.getPlayerState() === YT.PlayerState.PLAYING;
   $('playIcon').innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
   $('bigPlay').classList.toggle('hidden', playing);
+  if (playing) pokeControls(); else { clearTimeout(hideTimer); showControls(); }
+}
+
+// ---------- Tự ẩn controller ----------
+function showControls() {
+  document.querySelectorAll('.player-topbar, .player-bottom')
+    .forEach(el => el.classList.remove('fade'));
+  $('videoBox').classList.remove('idle');
+}
+function hideControls() {
+  document.querySelectorAll('.player-topbar, .player-bottom')
+    .forEach(el => el.classList.add('fade'));
+  $('videoBox').classList.add('idle');
+}
+function pokeControls() {
+  showControls();
+  clearTimeout(hideTimer);
+  if (player && playerReady && player.getPlayerState() === YT.PlayerState.PLAYING) {
+    hideTimer = setTimeout(hideControls, 3000);  // tự ẩn sau 3 giây khi đang phát
+  }
+}
+function controlsHidden() {
+  return document.querySelector('.player-topbar').classList.contains('fade');
 }
 
 function togglePlay() {
@@ -327,7 +351,12 @@ $('parentCloseBtn').onclick = closeParent;
 $('backBtn').onclick = closePlayer;
 $('playBtn').onclick = togglePlay;
 $('bigPlay').onclick = togglePlay;
-$('shield').onclick = togglePlay;
+$('shield').onclick = () => {
+  // Controller đang ẩn: chạm lần đầu chỉ để hiện lại, chưa phát/dừng
+  if (controlsHidden()) pokeControls();
+  else togglePlay();
+};
+$('videoBox').addEventListener('mousemove', pokeControls);
 $('volBtn').onclick = () => {
   if (!player || !playerReady) return;
   muted = !muted;
