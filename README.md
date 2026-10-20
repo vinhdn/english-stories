@@ -1,4 +1,4 @@
-# 📚 Truyện Kể Cho Bé — English Stories for Kids
+# 📚 Kiddy TV — Truyện Kể Cho Bé (English Stories for Kids)
 
 Website xem video đọc truyện tiếng Anh an toàn cho bé khoảng 3 tuổi.
 Danh sách gồm **692 video** đọc truyện từ kênh YouTube [KidTimeStoryTime](https://www.youtube.com/@KidTimeStoryTime)
