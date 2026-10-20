@@ -10,8 +10,9 @@ Mở `index.html` (hoặc bật GitHub Pages cho repo này) — bé chạm vào 
 
 ### Tính năng cho bé
 - Ô video to, chạm là phát; hết truyện tự chuyển sang truyện tiếp theo.
-- Nút điều khiển thật to: tạm dừng/phát, xem lại, truyện tiếp theo, về trang chủ, toàn màn hình.
-- **Không quảng cáo, không comment, không video gợi ý lạ** — chỉ phát đúng danh sách đã chọn.
+- Trình phát **full màn hình**: toàn bộ điều khiển nằm ngay trong video (nút phát đỏ to ở giữa, thanh điều khiển ở đáy).
+- Có **lớp chắn click** phủ lên video nên bé chạm vào màn hình chỉ phát/tạm dừng — **không bao giờ hiện giao diện gợi ý video của YouTube**.
+- **Không quảng cáo, không comment, ẩn phụ đề (CC)** mặc định.
 - Video nào lỗi sẽ tự bỏ qua sang truyện kế tiếp.
 
 ### Tính năng cho phụ huynh (nút 🔒, có mã PIN)

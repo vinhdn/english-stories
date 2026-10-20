@@ -38,20 +38,14 @@ function seriesList() {
 }
 
 function renderTabs() {
-  [['tabsHome'], ['tabsPlayer']].forEach(([id]) => {
-    const bar = $(id);
-    if (!bar) return;
-    bar.innerHTML = '';
-    seriesList().forEach((s, i) => {
-      const b = document.createElement('button');
-      b.className = 'tab ' + TAB_COLORS[i % TAB_COLORS.length] + (s === currentSeries ? ' active' : '');
-      b.textContent = s;
-      b.onclick = () => {
-        currentSeries = s; renderTabs(); renderGrid();
-        if (!$('playerView').classList.contains('hidden')) playNextInSeries();
-      };
-      bar.appendChild(b);
-    });
+  const bar = $('tabsHome');
+  bar.innerHTML = '';
+  seriesList().forEach((s, i) => {
+    const b = document.createElement('button');
+    b.className = 'tab ' + TAB_COLORS[i % TAB_COLORS.length] + (s === currentSeries ? ' active' : '');
+    b.textContent = s;
+    b.onclick = () => { currentSeries = s; renderTabs(); renderGrid(); };
+    bar.appendChild(b);
   });
 }
 
@@ -63,13 +57,6 @@ function visibleVideos() {
     list = list.filter(v => v.t.toLowerCase().includes(q));
   }
   return list;
-}
-
-// Khi đang xem mà đổi tab series: nhảy sang video đầu của series mới
-function playNextInSeries() {
-  const list = visibleVideos();
-  if (list.length) { queue = list; openPlayer(0); }
-  else closePlayer();
 }
 
 function renderGrid() {
@@ -134,7 +121,10 @@ function openPlayer(i) {
           },
           onStateChange: e => {
             if (e.data === YT.PlayerState.ENDED) playNext();
-            if (e.data === YT.PlayerState.PLAYING) errorStreak = 0;
+            if (e.data === YT.PlayerState.PLAYING) {
+              errorStreak = 0;
+              try { e.target.unloadModule('captions'); } catch (err) {}  // đảm bảo CC luôn tắt
+            }
             syncPlayUI();
           },
           onError: () => { errorStreak++; if (errorStreak <= 3) playNext(); else closePlayer(); }
@@ -337,6 +327,7 @@ $('parentCloseBtn').onclick = closeParent;
 $('backBtn').onclick = closePlayer;
 $('playBtn').onclick = togglePlay;
 $('bigPlay').onclick = togglePlay;
+$('shield').onclick = togglePlay;
 $('volBtn').onclick = () => {
   if (!player || !playerReady) return;
   muted = !muted;
@@ -344,7 +335,7 @@ $('volBtn').onclick = () => {
   $('volIcon').innerHTML = muted ? ICON_MUTE : ICON_VOL;
 };
 $('fsBtn').onclick = () => {
-  const box = document.querySelector('.video-box');
+  const box = $('videoBox');
   if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
   else if (box.requestFullscreen) box.requestFullscreen().catch(() => {});
 };
