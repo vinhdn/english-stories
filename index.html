@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#ff8c42">
+<title>Truyện Kể Cho Bé — English Stories for Kids</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== MÀN HÌNH CHÍNH (CHO BÉ) ===== -->
+<div id="homeView">
+  <header>
+    <div class="logo">📚 Truyện Kể Cho Bé</div>
+    <div class="header-actions">
+      <button id="searchBtn" class="icon-btn" title="Tìm truyện">🔍</button>
+      <button id="parentBtn" class="icon-btn" title="Chế độ phụ huynh">🔒</button>
+    </div>
+  </header>
+
+  <div id="searchBar" class="hidden">
+    <input id="searchInput" type="text" placeholder="Tìm tên truyện... (ví dụ: fly guy, disney)">
+  </div>
+
+  <nav id="seriesBar"></nav>
+  <main id="grid"></main>
+  <p id="emptyMsg" class="hidden">Không tìm thấy truyện nào 🐞</p>
+</div>
+
+<!-- ===== MÀN HÌNH XEM VIDEO ===== -->
+<div id="playerView" class="hidden">
+  <div id="playerWrap">
+    <div id="ytPlayer"></div>
+    <div id="tapZone"></div>
+    <div id="controls">
+      <div id="nowTitle"></div>
+      <div class="controls-row">
+        <button id="backBtn" class="ctl-btn" title="Về trang chủ">🏠</button>
+        <button id="restartBtn" class="ctl-btn" title="Xem lại từ đầu">↺</button>
+        <button id="playBtn" class="ctl-btn big" title="Phát / Tạm dừng">⏸</button>
+        <button id="nextBtn" class="ctl-btn" title="Truyện tiếp theo">⏭</button>
+        <button id="fsBtn" class="ctl-btn" title="Toàn màn hình">⛶</button>
+      </div>
+      <div id="progressWrap"><div id="progressBar"></div></div>
+    </div>
+    <div id="timerBadge" class="hidden"></div>
+  </div>
+</div>
+
+<!-- ===== HẾT GIỜ XEM ===== -->
+<div id="timeUpView" class="hidden overlay-screen">
+  <div class="big-emoji">🌙</div>
+  <h2>Đã hết giờ xem truyện!</h2>
+  <p>Bé nghỉ mắt một chút nhé 💤</p>
+  <button id="timeUpHomeBtn" class="primary-btn">Về trang chủ</button>
+</div>
+
+<!-- ===== MÃ PIN PHỤ HUYNH ===== -->
+<div id="pinView" class="hidden overlay-screen">
+  <div class="big-emoji">🔒</div>
+  <h2 id="pinTitle">Nhập mã PIN của bố mẹ</h2>
+  <div id="pinDots">○ ○ ○ ○</div>
+  <div id="pinPad">
+    <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+    <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+    <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+    <button data-key="del">⌫</button><button data-key="0">0</button><button data-key="cancel">✖</button>
+  </div>
+  <p id="pinError" class="error hidden">Sai mã PIN, thử lại nhé!</p>
+</div>
+
+<!-- ===== BẢNG PHỤ HUYNH ===== -->
+<div id="parentView" class="hidden">
+  <header>
+    <div class="logo">⚙️ Chế độ phụ huynh</div>
+    <button id="parentCloseBtn" class="icon-btn" title="Đóng">✖</button>
+  </header>
+  <section class="panel">
+    <h3>⏰ Hẹn giờ xem</h3>
+    <div id="timerOptions">
+      <button data-min="0">Tắt</button>
+      <button data-min="15">15 phút</button>
+      <button data-min="30">30 phút</button>
+      <button data-min="45">45 phút</button>
+      <button data-min="60">60 phút</button>
+    </div>
+    <p class="hint">Khi hết giờ, video sẽ tự dừng và hiện màn hình nghỉ.</p>
+  </section>
+  <section class="panel">
+    <h3>➕ Thêm video mới</h3>
+    <input id="addUrl" type="text" placeholder="Dán link YouTube hoặc mã video (11 ký tự)">
+    <input id="addTitle" type="text" placeholder="Tên truyện (tùy chọn)">
+    <button id="addBtn" class="primary-btn">Thêm vào danh sách</button>
+    <p id="addMsg" class="hint"></p>
+  </section>
+  <section class="panel">
+    <h3>🗑️ Quản lý danh sách (<span id="videoCount"></span> video)</h3>
+    <input id="manageSearch" type="text" placeholder="Tìm video để xóa...">
+    <div id="manageList"></div>
+  </section>
+  <section class="panel">
+    <h3>🔑 Mã PIN</h3>
+    <button id="changePinBtn" class="primary-btn">Đổi mã PIN</button>
+    <button id="resetBtn" class="danger-btn">Khôi phục danh sách gốc</button>
+  </section>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
