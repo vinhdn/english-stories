@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#ff8c42">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Truyện Cho Bé">
 <title>Kiddy TV — Truyện Kể Cho Bé</title>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -143,6 +150,11 @@
     <h3>🔑 Mã PIN</h3>
     <button id="changePinBtn" class="primary-btn">Đổi mã PIN</button>
     <button id="resetBtn" class="danger-btn">Khôi phục danh sách gốc</button>
+  </section>
+  <section class="panel">
+    <h3>📲 Cài làm ứng dụng trên điện thoại</h3>
+    <button id="installAppBtn" class="primary-btn" hidden>Cài ứng dụng Truyện Cho Bé</button>
+    <p class="hint" id="installHint">Khi đã cài, trang có biểu tượng nút Play đỏ trên màn hình chính và mở như một ứng dụng (không còn thanh địa chỉ của trình duyệt). Nếu nút cài chưa hiện: mở trang bằng Chrome trên Android, bấm menu ⋮ ở góc phải rồi chọn “Cài đặt ứng dụng” / “Thêm vào màn hình chính”. Xem video vẫn cần mạng.</p>
   </section>
 </div>
 

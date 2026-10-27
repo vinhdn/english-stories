@@ -31,3 +31,14 @@ Các cài đặt của phụ huynh được lưu ngay trên trình duyệt (loca
 
 ## Bật GitHub Pages
 Vào **Settings → Pages → Branch: `master` / root** để lấy link web công khai cho cả nhà cùng mở.
+
+## Cài làm ứng dụng (PWA) trên Android
+
+Trang đạt đủ điều kiện cài kiểu ứng dụng của Chrome cho Android (không còn
+chỉ là lối tắt): có `manifest.webmanifest` (tên “Truyện Kể Cho Bé — Kiddy TV”,
+`display: standalone`), icon nút Play đỏ 192px + 512px + bản maskable trong
+`icons/`, và service worker `sw.js` lưu khung trang để mở nhanh/mở offline
+(xem video vẫn cần mạng). Nút “Cài ứng dụng Truyện Cho Bé” nằm trong Chế độ
+phụ huynh — nút tự hiện khi Chrome cho phép cài; hoặc mở menu ⋮ của Chrome →
+“Cài đặt ứng dụng”. iPhone/iPad: nút Chia sẻ → “Thêm vào Màn hình chính”.
+Lời mời cài chỉ xuất hiện trên HTTPS.
